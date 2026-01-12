@@ -20,7 +20,7 @@ public class OrderEntryPhase1 {
 		double taxAmount = promptDecimal(sc,taxPrompt, 0.0);
 		
 		String discountPrompt =
-				"Enter the total discount for the item (decimal)."
+				"Enter the total discount for the item (decimal). "
 			   +"Enter the dollar amount, not a precent: ";
 		double discountAmount = promptDecimal(sc, discountPrompt, 0.0);
 		
@@ -28,7 +28,7 @@ public class OrderEntryPhase1 {
 		
 		System.out.println();
 		System.out.println("Item Number\tItem Description\tItem Price\tQuantity\tTax\tDiscount\tNet Amount");
-		System.out.printf("%s\t\t&s\t\t%s\t\t%d\t\t%s\t%s\t\t%s%n", 
+		System.out.printf("%s\t\t%s\t\t%s\t\t%d\t\t%s\t%s\t\t%s%n", 
 				itemNumber,
 				itemDescription,
 				money(itemPrice),
@@ -41,11 +41,6 @@ public class OrderEntryPhase1 {
 		sc.close();
 	}
 	
-	private static int prompt(Scanner sc, String string, int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	private static String promptAlphaNum(Scanner sc, String string) {
 		// TODO Auto-generated method stub
 		return null;
@@ -56,7 +51,7 @@ public class OrderEntryPhase1 {
 			System.out.print(prompt);
 			String input = sc.nextLine().trim();
 			
-			if (!input.isEmpty() && input.matches("[A-Za-z0-9 ]")) {
+			if (!input.isEmpty() && input.matches("[A-Za-z0-9 ]+")) {
 				return input;
 			}
 			System.out.println("Invalid entry. Please enter alphanumeric character only.");
