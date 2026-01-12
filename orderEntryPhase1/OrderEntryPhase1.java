@@ -12,7 +12,7 @@ public class OrderEntryPhase1 {
 		String itemDescription = promptAlphaNum(sc, "Enter item description (alphanumeric): ");
 		
 		double itemPrice = promptDecimal(sc, "Enter the item price (decimal): ", 0.0);
-		int quantityOrdered = prompt(sc, "Enter quantity ordered (interger): ", 0);
+		int quantityOrdered = promptInt(sc, "Enter quantity ordered (interger): ", 0);
 		
 		String taxPrompt =
 				"Enter the total tax for the item (decimal). "
@@ -41,11 +41,6 @@ public class OrderEntryPhase1 {
 		sc.close();
 	}
 	
-	private static String promptAlphaNum(Scanner sc, String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private static String promtAlphaNum(Scanner sc, String prompt) {
 		while (true) {
 			System.out.print(prompt);
@@ -74,8 +69,27 @@ public class OrderEntryPhase1 {
 			}
 		}
 	}
+	
+	private static int promptInt(Scanner sc, String prompt, int minValue) {
+    while (true) {
+        System.out.print(prompt);
+        String input = sc.nextLine().trim();
+
+        try {
+            int value = Integer.parseInt(input);
+            if (value >= minValue) {
+                return value;
+            }
+            System.out.println("Invalid entry. Value must be " + minValue + " or greater.");
+        } catch (NumberFormatException ex) {
+            System.out.println("Invalid entry. Please enter a whole number (example 3).");
+        }
+    }
+}
+
 	private static String money(double v) {
 		return String.format("$%.2f", v);
 	}
 }
+
 
