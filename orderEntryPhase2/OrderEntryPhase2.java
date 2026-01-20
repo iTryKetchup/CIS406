@@ -1,4 +1,4 @@
-//Nicholas Brown CIS406 course Project Phase 2: Calculations of Data Introduction
+// Nicholas Brown CIS406 course Project Phase 2: Calculations of Data Introduction
 package orderEntryPhase2;
 
 import java.util.Scanner;
@@ -6,53 +6,77 @@ import java.util.InputMismatchException;
 
 public class OrderEntryPhase2 {
 
-	public static void main(String[] args) {
-		{
-				
-			String itemNumber;
-			String itemDescription;
-			double itemPrice;
-			int quantityOrdered;
-			double grossAmounnt;
-			double taxPercentage;
-			double taxAmount;
-			double discountPercent;
-			double discountAmount;
-			double netAmount;
-			
-			Scanner input = new Scanner(System.in);
-			
-			try 
-			{
-				System.out.print("Enter Item Number: ");
-				itemNumber = input.nextLine();
-				
-				System.out.print("Enter Item Decription: ");
-				itemDescription = input.nextLine();
-				
-				System.out.print("Enter Item Price: ");
-				itemPrice = input.nextLine();
-				
-				System.out.print("Enter Quantity Ordered: ");
-				quantityOrdered = input.nextLine();
-				
-				System.out.print("Enter Tax Percentage: ");
-				taxPercentage = input.nextLine();
-				
-				System.out.print("Enter Discount Percent: ");
-				discountPercent = input.nextLine();
-			}
-			Catch (InputMismatchException)
-			{
-				System.out.println("Input format error!");
-				e.printStackTrace();
-			}
-			Catch (Exception e)
-			{
-				System.out.println("Some other input error occured!");
-			}
-		}
-	input.close();
-	}
+    public static void main(String[] args) {
 
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter Item Number: ");
+        String itemNumber = input.nextLine();
+
+        System.out.print("Enter Item Description: ");
+        String itemDescription = input.nextLine();
+
+        double itemPrice = readDouble(input, "Enter Item Price: ");
+        int quantityOrdered = readInt(input, "Enter Quantity Ordered: ");
+
+        double grossAmount = itemPrice * quantityOrdered;
+
+        double taxPercentage = readDouble(input, "Enter Tax Percentage: ");
+        double taxAmount = grossAmount * (taxPercentage / 100.0);
+
+        double discountPercent = readDouble(input, "Enter Discount Percent: ");
+        double discountAmount = grossAmount * (discountPercent / 100.0);
+
+        double netAmount = grossAmount + taxAmount - discountAmount;
+
+        System.out.println();
+        System.out.println("Item#\tDescription\tPrice\tQty\tTax%\tTax Amt\tDisc%\tDisc Amt\tNet Amt");
+
+        System.out.printf("%s\t%s\t$%.2f\t%d\t%.2f\t$%.2f\t%.2f\t$%.2f\t$%.2f%n",
+                itemNumber,
+                itemDescription,
+                itemPrice,
+                quantityOrdered,
+                taxPercentage,
+                taxAmount,
+                discountPercent,
+                discountAmount,
+                netAmount
+        );
+
+        System.out.println();
+        System.out.print("Bye!!");
+
+        input.close();
+    }
+
+    
+    public static double readDouble(Scanner input, String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                double value = input.nextDouble();
+                input.nextLine(); 
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.println("Input format error! Please enter a decimal number.");
+                input.nextLine(); 
+            }
+        }
+    }
+
+   
+    public static int readInt(Scanner input, String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                int value = input.nextInt();
+                input.nextLine(); 
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.println("Input format error! Please enter a whole number.");
+                input.nextLine(); 
+            }
+        }
+    }
 }
