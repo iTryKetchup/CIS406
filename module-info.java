@@ -4,5 +4,5 @@
 /**
  * 
  */
-module temperatureConversion {
+module travelTimeConverter {
 }
