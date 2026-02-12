@@ -1,6 +1,5 @@
-// Nicholas Brown
-// CIS 406
-// Course Project Phase 3: Using a Loop to Allow Multiple Entries
+// Nicholas Brown CIS 406 Course Project Phase 3: Using a Loop to Allow Multiple Entries
+
 package orderEntryPhase3;
 
 import java.util.Scanner;
@@ -23,7 +22,7 @@ public class OrderEntryPhase3 {
             System.out.print("Enter item number (alphanumeric): ");
             String itemNumber = scanner.nextLine().trim();
 
-            System.out.print 'Enter item description (alphanumeric): ');
+            System.out.print ("Enter item description (alphanumeric): ");
             String itemDescription = scanner.nextLine().trim();
 
             System.out.print("Enter item price (decimal): ");
@@ -34,27 +33,27 @@ public class OrderEntryPhase3 {
 
             double grossAmount = itemPrice * quantityOrdered;
 
-            System.out.print("Enter tax percentage (decimal): ");
+            System.out.print("Enter the tax percentage for the item (decimal).: ");
             double taxPercent = Double.parseDouble(scanner.nextLine().trim());
-            double taxAmount = grossAmount * (taxPercent / 100.0);
+            double taxAmount = grossAmount * taxPercent;
 
-            System.out.print("Enter discount percentage (decimal): ");
+            System.out.print("Enter the discount percent for the item (decimal): ");
             double discountPercent = Double.parseDouble(scanner.nextLine().trim());
-            double discountAmount = grossAmount * (discountPercent / 100.0);
+            double discountAmount = grossAmount * discountPercent;
 
             double netAmount = grossAmount + taxAmount - discountAmount;
 
-            // Item output: labels on one line, data on next line
             System.out.println();
-            System.out.printf("%-15s %-20s %12s %10s %8s %12s %12s %16s %12s%n",
-                    "Item Number", "Description", "Item Price", "Quantity", "Tax %", "Tax Amount",
-                    "Discount %", "Discount Amount", "Net Amount");
+            System.out.println(
+            "Item Number\tDescription\tItem Price\tQuantity\tTax %\tTax Amount\tDiscount %\tDiscount Amount\tNet Amount"
+            );
 
-            System.out.printf("%-15s %-20s %12.2f %10d %8.2f %12.2f %12.2f %16.2f %12.2f%n%n",
-                    itemNumber, itemDescription, itemPrice, quantityOrdered, taxPercent, taxAmount,
-                    discountPercent, discountAmount, netAmount);
+            System.out.printf(
+            "%s\t%s\t%.2f\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f%n%n",
+            itemNumber, itemDescription, itemPrice, quantityOrdered,
+            taxPercent, taxAmount, discountPercent, discountAmount, netAmount
+            );
 
-            // Totals accumulation
             totalLineItems++;
             totalGrossAmount += grossAmount;
             totalTaxAmount += taxAmount;
@@ -68,7 +67,6 @@ public class OrderEntryPhase3 {
             }
         }
 
-        // Summary output: labels on one line, data on next line
         System.out.println();
         System.out.println("Summary Totals");
         System.out.printf("%-18s %18s %18s %24s %18s%n",
@@ -81,3 +79,4 @@ public class OrderEntryPhase3 {
         scanner.close();
     }
 }
+
