@@ -43,16 +43,13 @@ public class OrderEntryPhase3 {
 
             double netAmount = grossAmount + taxAmount - discountAmount;
 
-            System.out.println();
-            System.out.println(
-            "Item Number\tDescription\tItem Price\tQuantity\tTax %\tTax Amount\tDiscount %\tDiscount Amount\tNet Amount"
-            );
+            System.out.printf("%-12s %-18s %10s %8s %8s %12s %12s %16s %12s%n",
+            "Item Number","Description","Item Price","Quantity","Tax %","Tax Amount","Discount %","Discount Amount","Net Amount");
 
-            System.out.printf(
-            "%s\t%s\t%.2f\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f%n%n",
+            System.out.printf("%-12s %-18s %10.2f %8d %8.2f %12.2f %12.2f %16.2f %12.2f%n",
             itemNumber, itemDescription, itemPrice, quantityOrdered,
-            taxPercent, taxAmount, discountPercent, discountAmount, netAmount
-            );
+            taxPercent, taxAmount, discountPercent, discountAmount, netAmount);
+
 
             totalLineItems++;
             totalGrossAmount += grossAmount;
@@ -79,4 +76,5 @@ public class OrderEntryPhase3 {
         scanner.close();
     }
 }
+
 
