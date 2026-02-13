@@ -26,9 +26,9 @@ public class InterestRateCalculatorPart1 {
 			double interestAmount = calculateInterest(loanAmount, interestRate);
 			
 			System.out.println();
-			System.out.printf("%-15 %s%n", "Loan amount:", currencyFormat.format(loanAmount));
-			System.out.printf("%-15 %s%n", "Interest rate:", percentFormat.format(interestRate));
-			System.out.printf("%-15 %s%n", "Interest:", currencyFormat.format(interestAmount));
+			System.out.printf("%-15s %s%n", "Loan amount:", currencyFormat.format(loanAmount));
+			System.out.printf("%-15s %s%n", "Interest rate:", percentFormat.format(interestRate));
+			System.out.printf("%-15s %s%n", "Interest:", currencyFormat.format(interestAmount));
 			System.out.println();
 			
 			continueChoice = promptForContinueChoice(scanner, "Continue? (y/n): ");
