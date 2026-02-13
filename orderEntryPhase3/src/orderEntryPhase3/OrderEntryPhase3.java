@@ -57,7 +57,7 @@ public class OrderEntryPhase3 {
             totalDiscountAmount += discountAmount;
             totalNetAmount += netAmount;
 
-            System.out.print("Enter N or n to stop, any other key to continue: ");
+            System.out.print("Enter Y or N to stop, any other key to continue: ");
             continueInput = scanner.nextLine().trim();
             if (continueInput.isEmpty()) {
                 continueInput = "Y";
@@ -76,5 +76,4 @@ public class OrderEntryPhase3 {
         scanner.close();
     }
 }
-
 
