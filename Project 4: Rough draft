@@ -7,15 +7,15 @@ public class OrderEntryPhase4 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
+
 		String table = "";
-		
+
 		System.out.print("Enter invoice date: ");
 		String invDate = input.nextLine();
-		
+
 		table = table + "INVOICE\n";
 		table = table + "Invoice Date:\t" + invDate + "\n\n";
-		
+
 		System.out.print("Enter customer name: ");
 		String cName = input.nextLine();
 		System.out.print("Enter customer street address: ");
@@ -26,68 +26,75 @@ public class OrderEntryPhase4 {
 		String cState = input.nextLine();
 		System.out.print("Enter customer zip code: ");
 		String cZip = input.nextLine();
-		
+
 		table = table + "Customer Name:\t" + cName + "\n";
 		table = table + "Address:\t" + cStreet + "\n";
-		table = table + "City/State/Zip:\t" +cCity + ", " + cState + " " + cZip + "\n\n";
-		
-		table = table + "Item #\tDescription\tPrice\tQty\tGross Amt\tTax %\tTax Amt\tDisc Amt\n";
-		table = table + "______________________________________________________";
-		
+		table = table + "City/State/Zip:\t" + cCity + ", " + cState + " " + cZip + "\n\n";
+
+		// Header matches the data we print
+		table = table + "Item #\tDescription\tPrice\tQty\tGross Amt\tTax %\tTax Amt\tDisc %\tDisc Amt\tNet Amt\n";
+		table = table + "--------------------------------------------------------------------------------------------------------\n";
+
 		int lineTotal = 0;
 		double gTotal = 0;
 		double tTotal = 0;
 		double dTotal = 0;
 		double nTotal = 0;
-		
+
 		char choice = 'y';
-		
+
 		while (choice != 'n' && choice != 'N') {
-			System.out.print ("Enter item number: ");
+			System.out.print("Enter item number: ");
 			String iNum = input.nextLine();
-			
+
 			System.out.print("Enter item description: ");
 			String iDesc = input.nextLine();
-			
+
 			System.out.print("Enter item price: ");
 			double price = Double.parseDouble(input.nextLine());
-			
+
 			System.out.print("Enter quantity ordered: ");
 			int qty = Integer.parseInt(input.nextLine());
-			
+
 			double gross = price * qty;
-			
+
 			System.out.print("Enter tax percentage: ");
 			double taxPct = Double.parseDouble(input.nextLine());
 			double tax = gross * taxPct / 100;
-			
+
 			System.out.print("Enter discount percentage: ");
 			double discPct = Double.parseDouble(input.nextLine());
 			double disc = gross * discPct / 100;
-			
+
 			double net = gross + tax - disc;
-			table = table +iNum + "\t" + iDesc + "\t" + price + "\t" + qty + "\t" + gross + "\t"
+
+			// Print values that match the header (10 columns)
+			table = table + iNum + "\t" + iDesc + "\t" + price + "\t" + qty + "\t" + gross + "\t"
 					+ taxPct + "\t" + tax + "\t" + discPct + "\t" + disc + "\t" + net + "\n";
-			
-			lineTotal = lineTotal +1;
-			gTotal = gTotal +gross;
+
+			lineTotal = lineTotal + 1;
+			gTotal = gTotal + gross;
 			tTotal = tTotal + tax;
 			dTotal = dTotal + disc;
 			nTotal = nTotal + net;
-			
+
 			System.out.print("Add another item? (y/n): ");
 			String response = input.nextLine();
-			choice = response.toLowerCase().charAt(0);
+
+			if (response.isEmpty()) {
+				choice = 'n'; // if they just hit Enter, stop safely
+			} else {
+				choice = response.charAt(0); // you already handle n/N in the while condition
+			}
 		}
-		
-		table = table + "__________________________________________________\n";
-		table = table + "TOTALS\t\t\t" + lineTotal + "\t" + gTotal + "\t\t" + tTotal 
+
+		table = table + "--------------------------------------------------------------------------------------------------------\n";
+		table = table + "TOTALS\t\t\t\t" + lineTotal + "\t" + gTotal + "\t\t" + tTotal
 				+ "\t\t" + dTotal + "\t" + nTotal + "\n";
-		
+
 		System.out.println();
 		System.out.println(table);
-		
+
 		input.close();
 	}
-
 }
