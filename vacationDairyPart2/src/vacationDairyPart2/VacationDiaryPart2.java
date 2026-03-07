@@ -125,7 +125,7 @@ public class VacationDiaryPart2 {
 		}
 		
 		while (text.length() < 15) {
-			text = text + "";
+			text = text + " ";
 		}
 		
 		return text;
@@ -160,3 +160,4 @@ public class VacationDiaryPart2 {
 		return month + "/" + day + "/" + year;
  	}
 }
+
